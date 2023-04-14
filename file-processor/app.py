@@ -63,13 +63,13 @@ def process_image(image_url):
 @app.on_sqs_message(queue=url_queue_name,batch_size=1)
 def on_file_url_received(event):
     record = next(iter(event))
-    app.log.info("Received a message with contents: %s", record.body)
+    app.log.info("Received a message: %s", record.body)
 
     image_url = record.body
     
     text=''
     if file_url_pattern.match(image_url) == None:
-        app.log.error(f'{image_url} is not a valid url to image file')
+        app.log.error(f'{image_url} is not a valid url to the image file')
     else:
         text = process_image(image_url)
         if text == '':

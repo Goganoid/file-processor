@@ -10,7 +10,7 @@ app.log.setLevel(logging.DEBUG)
 
 @app.on_sqs_message(queue=text_queue_name,batch_size=1)
 def on_file_url_received(event):
-    app.log.info("Received message")
+    app.log.info("Received a message")
     record = next(iter(event))
     text = record.body
     if text == '':
