@@ -2,10 +2,10 @@ from chalice.test import Client
 import os
 # chalice `on_sqs_message` decorator requires this variable
 os.environ['IMAGE_QUEUE_NAME'] = 'test'
-from app import app
+from app import events
 
 def test_sqs_handler_image_text():
-    with Client(app) as client:
+    with Client(events) as client:
         url = 'https://previews.123rf.com/images/happyroman/happyroman1611/happyroman161100004/67968361-atm-transaction-printed-paper-receipt-bill-vector.jpg'
         response = client.lambda_.invoke(
             'on_file_url_received',
@@ -17,7 +17,7 @@ def test_sqs_handler_image_text():
         }
 
 def test_sqs_handler_image_no_text():
-    with Client(app) as client:
+    with Client(events) as client:
         url = 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/800px-Image_created_with_a_mobile_phone.png'
         response = client.lambda_.invoke(
             'on_file_url_received',
@@ -26,7 +26,7 @@ def test_sqs_handler_image_no_text():
         assert response.payload == {'image_url': url,'text': ''}
 
 def test_sqs_handler_image_wrong_url():
-    with Client(app) as client:
+    with Client(events) as client:
         url = 'https://upload.ABC.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/800px-Image_created_with_a_mobile_phone.png'
         response = client.lambda_.invoke(
             'on_file_url_received',
