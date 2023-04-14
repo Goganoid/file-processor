@@ -1,5 +1,5 @@
 from chalicelib.file_pattern import FILE_URL_PATTERN
-from chalicelib.image_processor import process_image
+from chalicelib.image_processor import process_file
 from chalice import BadRequestError
 from chalice import Blueprint
 
@@ -17,5 +17,5 @@ def index():
     if FILE_URL_PATTERN.match(file_url) == None:
         raise BadRequestError('"fileUrl" is not a valid link to image file')
     
-    text = process_image(file_url)
+    text = process_file(file_url)
     return {'image_url':file_url,'text':text}

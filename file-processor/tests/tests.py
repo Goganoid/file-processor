@@ -1,7 +1,7 @@
 from chalice.test import Client
 import os
 # chalice `on_sqs_message` decorator requires this variable
-os.environ['IMAGE_QUEUE_NAME'] = 'test'
+os.environ['FILE_URL_QUEUE_NAME'] = 'test'
 from app import events
 
 def test_sqs_handler_image_text():

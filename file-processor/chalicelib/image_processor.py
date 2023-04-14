@@ -11,15 +11,15 @@ s3 = boto3.client('s3')
 textract = boto3.client('textract',region_name='us-east-1')
 sqs = boto3.client('sqs')
 
-def process_image(image_url: str):
+def process_file(file_url: str) -> str:
     text_queue_url = os.environ.get('TEXT_QUEUE_URL')
     bucket_name = os.environ.get('BUCKET_NAME')
 
-    image_extension = image_url.split('.')[-1]
+    image_extension = file_url.split('.')[-1]
     processor.log.debug(f"Image extension: {image_extension}")
 
-    # download image
-    response = requests.get(image_url)
+    # download file
+    response = requests.get(file_url)
     if response.status_code!=200:
         processor.log.error(f'Can\'t get the file. Response status code:{response.status_code}')
         return
