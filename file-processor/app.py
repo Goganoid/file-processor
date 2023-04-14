@@ -58,6 +58,9 @@ def process_image(image_url):
     # send the text via SQS
     if text!='':
         sqs.send_message(QueueUrl=text_queue_url, MessageBody=text)
+    else:
+        app.log.error("Text was not found")
+        
     return text
 
 @app.on_sqs_message(queue=url_queue_name,batch_size=1)
