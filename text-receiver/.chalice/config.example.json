@@ -1,0 +1,12 @@
+{
+  "version": "2.0",
+  "app_name": "text-receiver",
+  "environment_variables": {
+    "TEXT_QUEUE_NAME": "YOUR QUEUE NAME"
+  },
+  "stages": {
+    "dev": {
+      "api_gateway_stage": "api"
+    }
+  }
+}
