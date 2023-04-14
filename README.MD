@@ -52,6 +52,7 @@ Response example:
 - Pipenv
 - Pytest
 - AWS CLI
+- Chalice
 - 1 S3 Bucket, 2 SQS, and Textract subscription
 
 It's important to configure role permissions for file-processor lambda so that it can read from S3.
