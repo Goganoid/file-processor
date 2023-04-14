@@ -31,7 +31,7 @@ Response example:
 }
 ```
 
-### <https://9glneuz949.execute-api.us-east-1.amazonaws.com/api/>
+#### <https://9glneuz949.execute-api.us-east-1.amazonaws.com/api/>
 
 Endpoint for OCR demonstration purposes. Returns the text found in the image.
 
